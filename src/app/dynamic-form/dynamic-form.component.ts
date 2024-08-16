@@ -3,15 +3,15 @@ import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {FieldSettingsModel, ValidatorsKeys} from "../../data/models/field-settings.model";
 
 @Component({
-  selector: 'app-client-form',
+  selector: 'app-dynamic-form',
   standalone: true,
   imports: [
     ReactiveFormsModule
   ],
-  templateUrl: './client-form.component.html',
+  templateUrl: './dynamic-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ClientFormComponent implements OnInit {
+export class DynamicFormComponent implements OnInit {
     @Input() fieldsSettings: FieldSettingsModel[] = [];
     @Output() onSubmit: EventEmitter<any> = new EventEmitter<any>()
 
@@ -26,11 +26,11 @@ export class ClientFormComponent implements OnInit {
     }
 
     initForm(): void {
-      let formGroupObj: any = {};
+      let controls: any = {};
       this.fieldsSettings.forEach((fieldSetting: FieldSettingsModel) => {
-        formGroupObj[fieldSetting.fieldName] = new FormControl(fieldSetting.initValue, [...fieldSetting.validators]);
+        controls[fieldSetting.fieldName] = new FormControl(fieldSetting.initValue, [...fieldSetting.validators]);
       });
-      this.formGroup = new FormGroup(formGroupObj);
+      this.formGroup = new FormGroup(controls);
     }
 
     watchFormErrors(): void {
