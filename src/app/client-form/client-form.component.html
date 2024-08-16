@@ -1,1 +1,21 @@
-<p>client-form works!</p>
+@if (formGroup) {
+  <form [formGroup]="formGroup" (ngSubmit)="onsubmit()">
+    @for (fieldSetting of fieldsSettings; track fieldSetting.fieldName) {
+      <label>
+        {{ fieldSetting.label }}:
+        <input
+          [placeholder]="fieldSetting.placeholder"
+          [type]="fieldSetting.type"
+          [formControlName]="fieldSetting.fieldName"
+        >
+      </label>
+      @if (validationErrors) {
+        <span>{{ validationErrors[fieldSetting.fieldName] }}</span>
+      }
+      <br>
+      <br>
+    }
+    <button type="submit">Submit</button>
+  </form>
+}
+
