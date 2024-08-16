@@ -1,0 +1,8 @@
+{
+  "expectedObjectKeys": ["firstName", "lastName", "birthplace", "dateOfBirth", "email", "currentAddress", "sex"],
+  "receivedObject": {
+    "firstName": "Ivan",
+    "currentAddress": "Chernivtsi",
+    "sex": "man"
+  }
+}
